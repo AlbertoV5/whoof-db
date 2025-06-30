@@ -16,7 +16,7 @@ Database utilities and connection management for Whop applications using AWS RDS
 ### Basic Setup
 
 ```ts
-import { getDatabasePoolHandler, rdsClient } from '@whoof/database'
+import { getDatabasePoolHandler, rdsClient } from '@whoof/db'
 import * as schema from './your-schema'
 
 // Configure database connection
@@ -42,7 +42,7 @@ const result = await dbPool(async (db) => {
 ### Production (AWS RDS Data API)
 
 ```ts
-import { getDatabasePoolHandler } from '@whoof/database'
+import { getDatabasePoolHandler } from '@whoof/db'
 
 const dbPool = getDatabasePoolHandler({
   schema: yourSchema,
@@ -82,7 +82,7 @@ const dbPool = getDatabasePoolHandler({
 ### Database Migrations
 
 ```ts
-import { migrate } from '@whoof/database'
+import { migrate } from '@whoof/db'
 
 // Run migrations
 await migrate({
