@@ -1,5 +1,5 @@
 {
-  "name": "@whoof/database",
+  "name": "@whoof/db",
   "version": "1.0.0",
   "description": "Database utilities and connection management for Whoof applications using AWS RDS Data API and Drizzle ORM",
   "main": "./src/index.ts",
