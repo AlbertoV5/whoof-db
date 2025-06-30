@@ -1,10 +1,10 @@
 {
   "name": "@whoof/db",
   "version": "1.0.0",
-  "description": "Database utilities and connection management for Whoof applications using AWS RDS Data API and Drizzle ORM",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "description": "Database utilities and connection management for Whop applications using AWS RDS Data API and Drizzle ORM",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./src/index.ts",
@@ -13,18 +13,20 @@
     }
   },
   "files": [
+    "dist",
     "src",
     "README.md"
   ],
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --target node",
-    "typecheck": "tsc --noEmit"
+    "build": "bun build src/index.ts --outdir dist --target node --format esm --splitting && bun run build:types",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlbertoV5/whoof-database.git",
-    "directory": "packages/lib-database"
+    "url": "https://github.com/AlbertoV5/whoof-db.git"
   },
   "keywords": [
     "database",
@@ -32,7 +34,7 @@
     "rds",
     "drizzle",
     "postgresql",
-    "whoof",
+    "whop",
     "typescript"
   ],
   "author": "Your Name",
@@ -41,6 +43,7 @@
   "private": false,
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/node": "^20.0.0",
     "typescript": "^5"
   },
   "peerDependencies": {

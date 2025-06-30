@@ -1,4 +1,4 @@
-# Whop Applications Framework - Database
+# @whoof/db
 
 Database utilities and connection management for Whop applications using AWS RDS Data API and Drizzle ORM.
 
@@ -10,6 +10,44 @@ Database utilities and connection management for Whop applications using AWS RDS
 - 🔧 **Development/Production** mode switching
 - 📦 **TypeScript** support with full type safety
 - 🔌 **Flexible schema** support
+
+## Installation
+
+### From GitHub
+
+```bash
+# Using bun (recommended)
+bun add git+https://github.com/AlbertoV5/whoof-auth.git#subdirectory=packages/whoof-db
+
+# Using npm
+npm install git+https://github.com/AlbertoV5/whoof-auth.git#subdirectory=packages/whoof-db
+
+# Using yarn
+yarn add git+https://github.com/AlbertoV5/whoof-auth.git#subdirectory=packages/whoof-db
+
+# Using pnpm
+pnpm add git+https://github.com/AlbertoV5/whoof-auth.git#subdirectory=packages/whoof-db
+```
+
+### From specific branch or tag
+
+```bash
+# Install from specific branch
+bun add git+https://github.com/AlbertoV5/whoof-auth.git#branch-name#subdirectory=packages/whoof-db
+
+# Install from specific tag
+bun add git+https://github.com/AlbertoV5/whoof-auth.git#v1.0.0#subdirectory=packages/whoof-db
+```
+
+## Dependencies
+
+You'll need to install the peer dependencies:
+
+```bash
+bun add @aws-sdk/client-rds-data drizzle-orm
+# Optional: for development mode
+bun add pg @types/pg
+```
 
 ## Usage
 
@@ -82,13 +120,14 @@ const dbPool = getDatabasePoolHandler({
 ### Database Migrations
 
 ```ts
-import { migrate } from '@whoof/db'
+import { getMigratorHandler } from '@whoof/db'
 
 // Run migrations
-await migrate({
+const migrator = getMigratorHandler({
   migrationsFolder: './migrations',
   // ... other migration config
 })
+await migrator()
 ```
 
 ## API Reference
@@ -116,6 +155,14 @@ Pre-configured AWS RDS Data API client.
 ### `withAuroraRetry(fn, context)`
 
 Utility function that wraps database operations with retry logic for Aurora Serverless.
+
+### `getDatabaseConnectionHandler`
+
+Creates a simple database connection handler without pooling.
+
+### `getMigratorHandler`
+
+Creates a database migration handler for running schema migrations.
 
 ## Environment Variables
 

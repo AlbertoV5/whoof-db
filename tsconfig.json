@@ -12,7 +12,12 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
+    "noEmit": false,
+    
+    // Declaration files
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "outDir": "./dist",
 
     // Best practices
     "strict": true,
@@ -25,5 +30,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
 }
